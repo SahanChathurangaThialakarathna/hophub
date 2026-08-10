@@ -1,4 +1,5 @@
 import uuid
+
 from datetime import date, datetime
 from typing import TYPE_CHECKING
 
@@ -6,6 +7,7 @@ from sqlalchemy import (
     CheckConstraint,
     Date,
     DateTime,
+    Float,
     ForeignKey,
     Integer,
     String,
@@ -55,6 +57,9 @@ class Rabbit(Base):
     notes: Mapped[str | None] = mapped_column(String(500), nullable=True)
     photo_url: Mapped[str | None] = mapped_column(String(255), nullable=True)
 
+    predicted_breed: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    breed_confidence: Mapped[float | None] = mapped_column(Float, nullable=True)
+    
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )

@@ -1,8 +1,10 @@
-"""One-off schema creation. Replaced by Alembic migrations in Sprint 2."""
+"""DEPRECATED — schema is now managed by Alembic.
 
-from app.db.session import Base, engine
-from app.models import Rabbit, User  # noqa: F401 — imports register both tables
+Use `alembic upgrade head` to apply migrations.
+Retained for reference only; do not run against a migrated database.
+"""
 
 if __name__ == "__main__":
-    Base.metadata.create_all(bind=engine)
-    print("Tables created:", list(Base.metadata.tables.keys()))
+    raise SystemExit(
+        "create_tables.py is deprecated. Run 'alembic upgrade head' instead."
+    )
