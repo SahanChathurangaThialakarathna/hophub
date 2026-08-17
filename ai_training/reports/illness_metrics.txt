@@ -1,0 +1,20 @@
+HopHub illness triage — evaluation on held-out test set
+
+              precision    recall  f1-score   support
+
+      normal     1.0000    1.0000    1.0000       240
+     monitor     0.9449    1.0000    0.9717       240
+ see_vet_now     1.0000    0.9417    0.9700       240
+
+    accuracy                         0.9806       720
+   macro avg     0.9816    0.9806    0.9805       720
+weighted avg     0.9816    0.9806    0.9805       720
+
+Confusion matrix (rows = actual, columns = predicted):
+             normal  monitor  see_vet_now
+normal          240        0            0
+monitor           0      240            0
+see_vet_now       0       14          226
+
+Severe-tier recall: 0.9417
+Emergencies classified as normal: 0
