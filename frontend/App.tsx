@@ -9,6 +9,7 @@ import { AuthProvider, useAuth } from "./src/context/AuthContext";
 import LoginScreen from "./src/screens/LoginScreen";
 import RegisterScreen from "./src/screens/RegisterScreen";
 import RabbitListScreen from "./src/screens/RabbitListScreen";
+import AddRabbitScreen from "./src/screens/AddRabbitScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,11 +32,18 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       {user ? (
-        <Stack.Screen
-          name="Rabbits"
-          component={RabbitListScreen}
-          options={{ headerShown: false }}
-        />
+        <>
+          <Stack.Screen
+            name="Rabbits"
+            component={RabbitListScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="AddRabbit"
+            component={AddRabbitScreen}
+            options={{ title: "Add rabbit" }}
+          />
+        </>
       ) : (
         <>
           <Stack.Screen
