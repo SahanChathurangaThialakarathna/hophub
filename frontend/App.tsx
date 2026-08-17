@@ -10,6 +10,8 @@ import LoginScreen from "./src/screens/LoginScreen";
 import RegisterScreen from "./src/screens/RegisterScreen";
 import RabbitListScreen from "./src/screens/RabbitListScreen";
 import AddRabbitScreen from "./src/screens/AddRabbitScreen";
+import RabbitDetailScreen from "./src/screens/RabbitDetailScreen";
+import { COLORS } from "./src/theme";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,13 +26,21 @@ function RootNavigator() {
   if (isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" color="#4f46e5" />
+        <ActivityIndicator size="large" color={COLORS.primary} />
       </View>
     );
   }
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: COLORS.surface },
+        headerTintColor: COLORS.primary,
+        headerTitleStyle: { color: COLORS.textPrimary, fontWeight: "700" },
+        headerShadowVisible: false,
+        contentStyle: { backgroundColor: COLORS.background },
+      }}
+    >
       {user ? (
         <>
           <Stack.Screen
@@ -42,6 +52,11 @@ function RootNavigator() {
             name="AddRabbit"
             component={AddRabbitScreen}
             options={{ title: "Add rabbit" }}
+          />
+          <Stack.Screen
+            name="RabbitDetail"
+            component={RabbitDetailScreen}
+            options={{ title: "" }}
           />
         </>
       ) : (

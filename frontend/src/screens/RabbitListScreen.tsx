@@ -65,7 +65,15 @@ function sexColour(sex: string): string {
 /* Card                                                                */
 /* ------------------------------------------------------------------ */
 
-function RabbitCard({ rabbit, index }: { rabbit: Rabbit; index: number }) {
+function RabbitCard({
+  rabbit,
+  index,
+  onPress,
+}: {
+  rabbit: Rabbit;
+  index: number;
+  onPress: () => void;
+}) {
   // Each card fades and slides in, staggered by its position in the list.
   const anim = useRef(new Animated.Value(0)).current;
   const pressScale = useRef(new Animated.Value(1)).current;
@@ -103,9 +111,12 @@ function RabbitCard({ rabbit, index }: { rabbit: Rabbit; index: number }) {
       ]}
     >
       <Pressable
+        onPress={onPress}
         onPressIn={() => animateTo(0.97)}
         onPressOut={() => animateTo(1)}
         style={styles.cardInner}
+        accessibilityRole="button"
+        accessibilityLabel={`View details for ${rabbit.name}`}
       >
         <View style={[styles.avatar, { backgroundColor: avatarColour(rabbit.id) }]}>
           <Text style={styles.avatarText}>{initials(rabbit.name)}</Text>
@@ -143,6 +154,8 @@ function RabbitCard({ rabbit, index }: { rabbit: Rabbit; index: number }) {
             </Text>
           )}
         </View>
+
+        <Text style={styles.chevron}>›</Text>
       </Pressable>
     </Animated.View>
   );
@@ -241,7 +254,13 @@ export default function RabbitListScreen({ navigation }: any) {
       <FlatList
         data={rabbits}
         keyExtractor={(item) => item.id}
-        renderItem={({ item, index }) => <RabbitCard rabbit={item} index={index} />}
+        renderItem={({ item, index }) => (
+          <RabbitCard
+            rabbit={item}
+            index={index}
+            onPress={() => navigation.navigate("RabbitDetail", { rabbitId: item.id })}
+          />
+        )}
         contentContainerStyle={[
           styles.listContent,
           { paddingBottom: insets.bottom + 96 },
@@ -367,7 +386,7 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 2 },
   },
-  cardInner: { flexDirection: "row", padding: 14 },
+  cardInner: { flexDirection: "row", padding: 14, alignItems: "center" },
 
   avatar: {
     width: 50,
@@ -402,6 +421,13 @@ const styles = StyleSheet.create({
     fontSize: 13.5,
     color: COLORS.textSecondary,
     marginTop: 3,
+  },
+
+  chevron: {
+    fontSize: 26,
+    color: COLORS.textMuted,
+    marginLeft: 8,
+    fontWeight: "300",
   },
 
   tagRow: { flexDirection: "row", flexWrap: "wrap", marginTop: 9 },
