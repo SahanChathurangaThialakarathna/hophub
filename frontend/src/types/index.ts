@@ -44,3 +44,37 @@ export interface TokenResponse {
   access_token: string;
   token_type: string;
 }
+
+/** Mirrors app/schemas/illness.py -> SymptomCatalogItem */
+export interface SymptomCatalogItem {
+  key: string;
+  label: string;
+  group: string;
+}
+
+export type TriageTier = "normal" | "monitor" | "see_vet_now";
+
+/** Mirrors app/schemas/illness.py -> IllnessCheckResult */
+export interface IllnessCheckResult {
+  id: string;
+  rabbit_id: string | null;
+  tier: TriageTier;
+  title: string;
+  summary: string;
+  actions: string[];
+  urgency_hours: number | null;
+  confidence: number;
+  reported_symptoms: string[];
+  symptom_count: number;
+  created_at: string;
+  disclaimer: string;
+}
+
+/** Mirrors app/schemas/illness.py -> IllnessCheckSummary */
+export interface IllnessCheckSummary {
+  id: string;
+  rabbit_id: string | null;
+  tier: TriageTier;
+  symptom_count: number;
+  created_at: string;
+}

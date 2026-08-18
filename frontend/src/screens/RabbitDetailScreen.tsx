@@ -581,6 +581,15 @@ export default function RabbitDetailScreen({ route, navigation }: any) {
         )}
 
         <Pressable
+          style={styles.buttonSecondary}
+          onPress={() => navigation.navigate("IllnessCheck", { rabbitId: rabbit.id })}
+          accessibilityRole="button"
+          accessibilityLabel={`Run a health check for ${rabbit.name}`}
+        >
+          <Text style={styles.buttonSecondaryText}>Run a health check</Text>
+        </Pressable>
+
+        <Pressable
           style={styles.button}
           onPress={beginEditing}
           accessibilityRole="button"
@@ -767,6 +776,17 @@ const styles = StyleSheet.create({
     borderLeftColor: COLORS.danger,
   },
   errorText: { color: COLORS.danger, fontSize: 13.5, lineHeight: 19 },
+
+  buttonSecondary: {
+    backgroundColor: COLORS.primarySoft,
+    borderRadius: RADIUS.sm,
+    paddingVertical: 15,
+    alignItems: "center",
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: "#c7d2fe",
+  },
+  buttonSecondaryText: { color: COLORS.primary, fontSize: 15, fontWeight: "700" },
 
   button: {
     backgroundColor: COLORS.primary,

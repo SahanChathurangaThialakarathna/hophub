@@ -234,15 +234,27 @@ export default function RabbitListScreen({ navigation }: any) {
           </Text>
         </View>
 
-        <Pressable
-          onPress={signOut}
-          hitSlop={10}
-          style={({ pressed }) => [styles.signOutButton, pressed && styles.pressed]}
-          accessibilityRole="button"
-          accessibilityLabel="Sign out"
-        >
-          <Text style={styles.signOutText}>Sign out</Text>
-        </Pressable>
+        <View style={styles.headerActions}>
+          <Pressable
+            onPress={() => navigation.navigate("IllnessCheck")}
+            hitSlop={8}
+            style={({ pressed }) => [styles.healthButton, pressed && styles.pressed]}
+            accessibilityRole="button"
+            accessibilityLabel="Run a health check"
+          >
+            <Text style={styles.healthButtonText}>Health check</Text>
+          </Pressable>
+
+          <Pressable
+            onPress={signOut}
+            hitSlop={8}
+            style={({ pressed }) => [styles.signOutButton, pressed && styles.pressed]}
+            accessibilityRole="button"
+            accessibilityLabel="Sign out"
+          >
+            <Text style={styles.signOutText}>Sign out</Text>
+          </Pressable>
+        </View>
       </View>
 
       {error && (
@@ -336,17 +348,30 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: COLORS.border,
   },
-  headerTextGroup: { flex: 1, paddingRight: 12 },
+  headerTextGroup: { flex: 1, paddingRight: 10 },
   greeting: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "700",
     color: COLORS.textPrimary,
     letterSpacing: -0.4,
   },
   headerMeta: {
-    fontSize: 13,
+    fontSize: 12.5,
     color: COLORS.textSecondary,
     marginTop: 3,
+  },
+
+  headerActions: { flexDirection: "row", alignItems: "center", gap: 8 },
+  healthButton: {
+    paddingHorizontal: 12,
+    paddingVertical: 7,
+    borderRadius: RADIUS.sm,
+    backgroundColor: COLORS.primarySoft,
+  },
+  healthButtonText: {
+    color: COLORS.primary,
+    fontSize: 13,
+    fontWeight: "700",
   },
   signOutButton: {
     paddingHorizontal: 12,

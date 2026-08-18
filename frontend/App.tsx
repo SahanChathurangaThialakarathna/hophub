@@ -11,6 +11,7 @@ import RegisterScreen from "./src/screens/RegisterScreen";
 import RabbitListScreen from "./src/screens/RabbitListScreen";
 import AddRabbitScreen from "./src/screens/AddRabbitScreen";
 import RabbitDetailScreen from "./src/screens/RabbitDetailScreen";
+import IllnessCheckScreen from "./src/screens/IllnessCheckScreen";
 import { COLORS } from "./src/theme";
 
 const Stack = createNativeStackNavigator();
@@ -57,6 +58,11 @@ function RootNavigator() {
             name="RabbitDetail"
             component={RabbitDetailScreen}
             options={{ title: "" }}
+          />
+          <Stack.Screen
+            name="IllnessCheck"
+            component={IllnessCheckScreen}
+            options={{ title: "Health check" }}
           />
         </>
       ) : (

@@ -7,6 +7,11 @@
  */
 
 export const COLORS = {
+
+    tierNormal: "#059669",
+  tierMonitor: "#d97706",
+  tierUrgent: "#dc2626",
+  
   primary: "#4f46e5",
   primaryDark: "#4338ca",
   primarySoft: "#eef2ff",
