@@ -9,6 +9,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.session import Base
 
 if TYPE_CHECKING:
+    from app.models.illness_check import IllnessCheck
     from app.models.rabbit import Rabbit
 
 
@@ -43,5 +44,10 @@ class User(Base):
 
     rabbits: Mapped[list["Rabbit"]] = relationship(
         back_populates="owner",
+        cascade="all, delete-orphan",
+    )
+
+    illness_checks: Mapped[list["IllnessCheck"]] = relationship(
+        back_populates="user",
         cascade="all, delete-orphan",
     )

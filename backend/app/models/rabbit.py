@@ -1,5 +1,4 @@
 import uuid
-
 from datetime import date, datetime
 from typing import TYPE_CHECKING
 
@@ -19,6 +18,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.db.session import Base
 
 if TYPE_CHECKING:
+    from app.models.illness_check import IllnessCheck
     from app.models.user import User
 
 
@@ -59,7 +59,7 @@ class Rabbit(Base):
 
     predicted_breed: Mapped[str | None] = mapped_column(String(50), nullable=True)
     breed_confidence: Mapped[float | None] = mapped_column(Float, nullable=True)
-    
+
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )
@@ -71,3 +71,9 @@ class Rabbit(Base):
     )
 
     owner: Mapped["User"] = relationship(back_populates="rabbits")
+
+    # No cascade: deleting a rabbit sets rabbit_id to NULL on its checks
+    # rather than deleting them, matching ondelete="SET NULL" on the FK.
+    illness_checks: Mapped[list["IllnessCheck"]] = relationship(
+        back_populates="rabbit",
+    )
