@@ -7,11 +7,10 @@
  */
 
 export const COLORS = {
-
-    tierNormal: "#059669",
+  tierNormal: "#059669",
   tierMonitor: "#d97706",
   tierUrgent: "#dc2626",
-  
+
   primary: "#4f46e5",
   primaryDark: "#4338ca",
   primarySoft: "#eef2ff",
@@ -34,6 +33,42 @@ export const COLORS = {
   female: "#ec4899",
   male: "#3b82f6",
   unknown: "#94a3b8",
+
+  /**
+   * Growth assessment palette.
+   *
+   * Four outcomes, four colours. 'below' and 'behind' are deliberately
+   * different hues: a kit that is small but growing steadily is not the same
+   * as one whose gap is widening, and colouring them alike would make every
+   * runt look like an emergency.
+   */
+  growthOnTrack: "#059669",
+  growthOnTrackSoft: "#ecfdf5",
+  growthAbove: "#0891b2",
+  growthAboveSoft: "#ecfeff",
+  growthBelow: "#d97706",
+  growthBelowSoft: "#fffbeb",
+  growthBehind: "#dc2626",
+  growthBehindSoft: "#fef2f2",
+  growthUnknown: "#94a3b8",
+  growthUnknownSoft: "#f1f5f9",
+
+  /** Litter life-stage accents, keyed to the rearing milestones in the
+   *  published sources: nest box, starting solids, weaning at 35 days. */
+  stageNursing: "#16a34a",
+  stageNursingSoft: "#f0fdf4",
+  stageSolids: "#0d9488",
+  stageSolidsSoft: "#f0fdfa",
+  stageWeaned: "#7c3aed",
+  stageWeanedSoft: "#f5f3ff",
+  stageGrown: "#64748b",
+  stageGrownSoft: "#f1f5f9",
+
+  /** Chart elements. */
+  chartReference: "#94a3b8",
+  chartBand: "#e2e8f0",
+  chartLine: "#4f46e5",
+  chartGrid: "#eef2f7",
 };
 
 export const SPACING = {
@@ -56,4 +91,6 @@ export const MOTION = {
   fast: 180,
   base: 320,
   slow: 480,
+  /** Delay between successive list items in a staggered entrance. */
+  stagger: 70,
 };

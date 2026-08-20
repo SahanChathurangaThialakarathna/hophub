@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
-from app.routes import auth, illness, rabbits
+from app.routes import auth, care, illness, kit, rabbits
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -22,6 +22,9 @@ app.add_middleware(
 app.include_router(auth.router, prefix=settings.API_V1_PREFIX)
 app.include_router(rabbits.router, prefix=settings.API_V1_PREFIX)
 app.include_router(illness.router, prefix=settings.API_V1_PREFIX)
+app.include_router(kit.router, prefix=settings.API_V1_PREFIX)
+app.include_router(care.router, prefix=settings.API_V1_PREFIX)
+
 
 
 @app.get("/health", tags=["System"])

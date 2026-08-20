@@ -12,6 +12,10 @@ import RabbitListScreen from "./src/screens/RabbitListScreen";
 import AddRabbitScreen from "./src/screens/AddRabbitScreen";
 import RabbitDetailScreen from "./src/screens/RabbitDetailScreen";
 import IllnessCheckScreen from "./src/screens/IllnessCheckScreen";
+import LitterListScreen from "./src/screens/LitterListScreen";
+import LitterDetailScreen from "./src/screens/LitterDetailScreen";
+import KitGrowthScreen from "./src/screens/KitGrowthScreen";
+import CareQAScreen from "./src/screens/CareQAScreen";
 import { COLORS } from "./src/theme";
 
 const Stack = createNativeStackNavigator();
@@ -44,9 +48,9 @@ function RootNavigator() {
     >
       {user ? (
         <>
-          <Stack.Screen
+                    <Stack.Screen
             name="Rabbits"
-            component={RabbitListScreen}
+            component={CareQAScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen
@@ -63,6 +67,26 @@ function RootNavigator() {
             name="IllnessCheck"
             component={IllnessCheckScreen}
             options={{ title: "Health check" }}
+          />
+          <Stack.Screen
+            name="Litters"
+            component={LitterListScreen}
+            options={{ title: "Litters" }}
+          />
+                    <Stack.Screen
+            name="LitterDetail"
+            component={LitterDetailScreen}
+            options={{ headerShown: false }}
+          />
+                    <Stack.Screen
+            name="KitGrowth"
+            component={KitGrowthScreen}
+            options={{ headerShown: false }}
+          />
+                    <Stack.Screen
+            name="CareQA"
+            component={CareQAScreen}
+            options={{ headerShown: false }}
           />
         </>
       ) : (
